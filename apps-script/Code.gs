@@ -3,9 +3,10 @@
 // (Execute as: Me, Who has access: Anyone). Copy the Web app URL and send it to Claude.
 
 const KEY = '-jBFYlbrWT2DrFKb8jldXl7_'; // must match the page
+const SHEET_ID = '1ZH3Edssum2L0e0GKuOSwZo65zhG_ufMODZTU1UoFb1I';
 
 function sheet_(name, headers) {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = SpreadsheetApp.openById(SHEET_ID);
   let sh = ss.getSheetByName(name);
   if (!sh) { sh = ss.insertSheet(name); sh.appendRow(headers); sh.setFrozenRows(1); }
   return sh;
@@ -13,6 +14,8 @@ function sheet_(name, headers) {
 const STAGES = () => sheet_('Stages', ['Order', 'Stage', 'Updated by', 'Updated at']);
 const NOTES  = () => sheet_('Order notes', ['Order', 'Note', 'By', 'At']);
 const TEAM   = () => sheet_('Team notes', ['Id', 'Note', 'By', 'At']);
+
+function setup() { STAGES(); NOTES(); TEAM(); }
 
 function rows_(sh) { const v = sh.getDataRange().getValues(); v.shift(); return v; }
 function json_(o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }

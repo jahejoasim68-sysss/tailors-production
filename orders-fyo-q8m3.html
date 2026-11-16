@@ -155,7 +155,7 @@ function render(){
  Object.entries(keep).forEach(([n,v])=>{const a=el.querySelector(`textarea[data-on="${n}"]`);if(a)a.value=v});if(foc){const a=el.querySelector(`textarea[data-on="${foc}"]`);if(a)a.focus()}
 }
 
-const API="", KEY="-jBFYlbrWT2DrFKb8jldXl7_";
+const API="https://script.google.com/macros/s/AKfycbyY7OjcmQyd5WM18XpWUBMchUg8WtLA_GTw30qS6YVIOTCvp-dK76lCEMy7ilipi5kzsw/exec", KEY="-jBFYlbrWT2DrFKb8jldXl7_";
 let me="";try{me=localStorage.getItem("fyo_name")||""}catch(_){}
 const nm=document.getElementById("myname");nm.value=me;nm.onchange=()=>{me=nm.value.trim();try{localStorage.setItem("fyo_name",me)}catch(_){}};
 function banner(m){document.getElementById("banner").innerHTML=m?`<div class="banner">${m}</div>`:""}
